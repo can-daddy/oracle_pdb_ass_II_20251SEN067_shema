@@ -46,7 +46,9 @@ CREATE PLUGGABLE DATABASE sh_pdb_20251SEN067
   ADMIN USER pdb_admin IDENTIFIED BY MySecurePass123;
 ```
 * **Execution Evidence:**  
-![PDB Creation Command](screenshots/pdb_creation/01_create_pdb.png)
+![PDB Creation Command](screenshots/pdb_creation/01_create_pdb.PNG)
+
+* **NB :** The evidence were taken before enabling the Oracle Managed Files (OMF). After reviewing and analyzing the incident, we were advised to enable it.
 
 #### Step 1.2: Opening and Verifying PDB State
 The PDB was opened in `READ WRITE` mode and verified using `SHOW PDBS`.
@@ -56,7 +58,7 @@ ALTER PLUGGABLE DATABASE sh_pdb_20251SEN067 OPEN;
 SHOW PDBS;
 ```
 * **Execution Evidence:**  
-![PDB Open State](screenshots/pdb_creation/02_open_pdb.png)
+![PDB Open State](screenshots/pdb_creation/02_open_pdb.PNG)
 
 #### Step 1.3: User Provisioning Inside PDB
 Session context was shifted to `sh_pdb_20251SEN067` to create the persistent database user `shema_plsqlauca_20251SEN067` with administrative privileges.
@@ -68,7 +70,7 @@ CREATE USER shema_plsqlauca_20251SEN067 IDENTIFIED BY MySecurePass123;
 GRANT CONNECT, RESOURCE, DBA TO shema_plsqlauca_20251SEN067;
 ```
 * **Execution Evidence:**  
-![User Creation inside PDB](screenshots/pdb_creation/03_create_user.png)
+![User Creation inside PDB](screenshots/pdb_creation/03_create_user.PNG)
 
 ---
 
@@ -86,7 +88,7 @@ CREATE PLUGGABLE DATABASE sh_to_delete_pdb_20251SEN067
 SHOW PDBS;
 ```
 * **Execution Evidence:**  
-![Temporary PDB Creation](screenshots/pdb_deletion/04_create_temp_pdb.png)
+![Temporary PDB Creation](screenshots/pdb_deletion/04_create_temp_pdb.PNG)
 
 #### Step 2.2: Complete PDB Deletion & File Cleanup
 The temporary PDB was closed immediately and completely dropped including its underlying OS data files using `INCLUDING DATAFILES`.
@@ -98,7 +100,7 @@ DROP PLUGGABLE DATABASE sh_to_delete_pdb_20251SEN067 INCLUDING DATAFILES;
 SHOW PDBS;
 ```
 * **Execution Evidence:**  
-![Temporary PDB Deletion](screenshots/pdb_deletion/05_delete_temp_pdb.png)
+![Temporary PDB Deletion](screenshots/pdb_deletion/05_delete_temp_pdb.PNG)
 
 ---
 
@@ -113,7 +115,7 @@ The built-in web management interface was configured to monitor the multitenant 
 2. Accessed the dashboard via `https://localhost:5500/em` using `SYSDBA` credentials.
 
 * **Execution Evidence:**  
-![OEM Express Dashboard](screenshots/oem_dashboard/06_oem_dashboard.png)
+![OEM Express Dashboard](screenshots/oem_dashboard/06_oem_dashboard.PNG)
 
 ---
 
